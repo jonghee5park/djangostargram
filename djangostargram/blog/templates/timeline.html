@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{msg}}</p>
+    {% for post in posts %}
+    <hr>
+    <h3>Post No. {{ post.id }}</h3>
+    <p><img src={{ post.imgsrc }} height="200px"></p>
+    <p>내용: {{ post.contents }}</p>
+    <p>작성시간: {{ post.created_date }}</p>
+    <p>태그: {{ post.tag }}</p>
+    <p>작성자: {{ post.author_id }}</p>
+    {% endfor %}
+    <nav>
+        <ul>
+            {% if posts.has_previous %}
+            <li>
+                <a href="?p={{ posts.previous_page_number }}">이전으로</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="#">이전으로</a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="#">{{ posts.number }}/{{ posts.paginator.num_pages }}</a>
+            </li>
+            {% if posts.has_next %}
+            <li>
+                <a href="?p={{ posts.next_page_number }}">다음으로</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="#">다음으로</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}

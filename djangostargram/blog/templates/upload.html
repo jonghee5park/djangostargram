@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="upload">
+    {% csrf_token %} {{ form.as_p }}
+    <fieldset>
+
+      <legend>업로드</legend>
+
+      <div class="form-group">
+        <label for="exampleInputImgsrc" class="form-label mt-4">이미지 주소</label>
+        <input type="text" class="form-control" id="imgsrc" name="imgsrc" aria-describedby="idHelp" placeholder="img src">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputContents" class="form-label mt-4">내용</label>
+        <input type="text" class="form-control" id="contents" name="contents" placeholder="contents">
+      </div>
+  
+      <button type="submit" class="btn btn-primary">등록</button>
+
+      <div> {{msg}} </div>
+
+    </fieldset>
+  </form>
+{% endblock %}
